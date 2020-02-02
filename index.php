@@ -8,7 +8,17 @@
     <link rel="stylesheet" href="style.css"/>
     <script src="scripts.js"></script>
     <title>Formulário</title>
-    
+
+  <?php
+
+$conn = mysqli_connect("localhost","root","");
+
+$db = mysqli_select_db($conn, "suplan");
+
+$sql = mysqli_query($conn, "select * from menus") or die( 
+mysqli_error($conn));
+
+  ?>  
 </head>
 <body>
     <div class="primary-div">
@@ -21,24 +31,24 @@
             </div>
 
             <div class="container">
-                <label for="">Departamento</label>
+                <label for="">cidades</label>
                 <select id="myList" name="dp" onchange="menuDinamico()" class="select1">
-                <?php 
-                    while($rows = $sql->fetch_assoc()){
-                        $estado = $rows['estado'];
-                        echo " <option value='$estado'>$estado</option";
-                    };
-                    
-                ?>   
+                <?php
+    
+                    while($row = mysqli_fetch_assoc($sql)){
+                        echo "<option>$row[departamentos]</option>";
+                    }
+    
+                ?>     
                >
                     </select> <br>    	 
             </div>
-            <!-- <div class="container">
-                <label for="">Objetos do Departamento</label>
+            <div class="container">
+                <label for="">bairros</label>
                 <select class="select1" name="dinamico" name="Departamento1">
                     <option value="-">Selecione</option>
                 </select> 
-            </div> --> 
+            </div> 
 
             <div class="container">
                 <label for="">dataResposta</label>
