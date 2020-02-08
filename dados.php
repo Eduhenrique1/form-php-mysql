@@ -1,7 +1,8 @@
-<?php
 
+<!-- FAZENDO INSERT NO MYSQL -->
+<?php
 $nome = $_POST["name"];
-$departamento = $_POST["dp"];
+$departamento = $_POST["cat"];
 $dataResposta = $_POST["dtres"];
 $quantidadeRealizada = $_POST["qtreali"];
 $quantidadeReal = $_POST["qtreal"];
@@ -22,7 +23,7 @@ if ($conn->connect_error) {
     die("Sem acesso ao Banco" . $conn->connect_error);
 };
 
-$sql= "insert into tbquestionario(Nome,departamento, dataResposta, quantidadeRealizada, quantidadeReal, valorProvisionado, valorUtilizado,ResultadoFinal, Observacao) VALUES ('$nome','$departamento','$dataResposta','$quantidadeRealizada','$quantidadeReal','$valorProvisionado','$valorUtilizado','$Resultado','$Observacao')";
+$sql= "INSERT INTO tbquestionario(Nome,departamento, dataResposta, quantidadeRealizada, quantidadeReal, valorProvisionado, valorUtilizado,ResultadoFinal, Observacao) VALUES ('$nome','$departamento','$dataResposta','$quantidadeRealizada','$quantidadeReal','$valorProvisionado','$valorUtilizado','$Resultado','$Observacao')";
 
 if($conn->query($sql) == TRUE) {
 } else {
@@ -32,6 +33,20 @@ if($conn->query($sql) == TRUE) {
 $conn->close();
 ?>
 
+<!-- FAZENDO UMA QUERY NO MYSQL PARA O SEGUNDO SELECT  -->
+<?php 
+//Include database configuration file
+include('conexao.php');
+
+if(isset($_POST["cat_id"]) && !empty($_POST["cat_id"])){
+    //Get all state data
+    $query = $conn->query("SELECT * FROM sub WHERE id_cat= ".$_POST['cat_id']." order by nome_sub ");
+        while($row = $query->fetch_assoc()){ 
+            echo '<option value="'.$row['id_cat'].'">'.$row['nome_sub'].'</option>';
+        }
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,9 +55,27 @@ $conn->close();
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css"/>
     <title>Inserido</title>
+   <style>
+   
+.bt{
+    background-color: white;
+    width: 30%;
+    height: 40px;
+    border-radius: 25px;
+    font-size: 13pt;
+    margin-left: 33%;
+}
+a{
+    text-decoration:none;
+    color: black;
+    text-transform: uppercase;
+}
+
+
+   </style>
 </head>
 <body>
    <h2 class="form">FORMULÁRIO CRIADO COM SUCESSO</h2> 
-   <a href="index.php">Voltar ao formulário</a>
+   <button class="bt"><a href="index.php">Voltar ao formulário</a></button>
 </body>
 </html>
