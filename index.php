@@ -32,7 +32,9 @@ $(document).ready(function(){
                 }
             }); 
         }else{
-            $('#listaPrg').html('<option value="">Select country first</option>'); 
+            $('#listaPrg').html('<option value="">Selecione</option>');
+            $('#listaAction').html('<option value="">Selecione</option>');
+            $('#listaInd').html('<option value="">Selecione</option>');
         }
     });
     
@@ -49,6 +51,23 @@ $(document).ready(function(){
             }); 
         }else{
             $('#listaAction').html('<option value="">Selecione</option>');
+           
+        }
+    });
+    $('#listaAction').on('change',function(){
+        var prgID = $(this).val();
+        if(prgID){
+            $.ajax({
+                type:'POST',
+                url:'dados.php',
+                data:'listaAction_id='+prgID,
+                success:function(html){
+                $('#listaInd').html(html);
+                }
+            }); 
+        }else{
+            $('#listaAction').html('<option value="">Selecione</option>');
+           
         }
     });
 });
@@ -63,13 +82,12 @@ $(document).ready(function(){
 		
             <div class="container">
                 <label for="">Órgão</label>
-          
 				<select id="listaUP" name="orgao" class="select1" >
                 <option value="">Selecione</option>
                 <?php
 
                 while($row = mysqli_fetch_assoc($sql)){
-                    echo '<option value="'.$row['codigo_up'].'">'.$row['up'].'</option>';
+                    echo '<option value="'.$row['cod_up'].'">'.$row['up'].'</option>';
                 }
 
                 ?>
@@ -79,7 +97,6 @@ $(document).ready(function(){
 
             <div class="container">
                 <label for="">Programa</label>
-                
                 <select id="listaPrg" name="programa" class="select1" >
                     <option value="">Selecione</option>
                 </select>
@@ -89,8 +106,8 @@ $(document).ready(function(){
 			 <div class="container">
                 <label for="">Ação</label>         
 				<select id="listaAction" name="acao" class="select1">
-
-                </select> <br>
+                    <option value="">Selecione</option>
+                </select>
 		
             </div>
 
@@ -99,34 +116,31 @@ $(document).ready(function(){
 			 <div class="container">
                 <label for="">Indicadores</label>         
 				 <select id="listaInd" name="indicador" class="select1" >
-						
-					
-  
-                    </select> <br>
-		
+                 <option value="">Selecione</option>
+                </select>
             </div>
 			
 		
             <div class="container">
                 <label for="">Realizado</label>
-                <input type="number" name="realizado" class="select"> <br>
+                <input type="number" name="realizado" class="select">
             </div>
         
 
             <div class="container">
                 <label for="">Observação</label>
-                <input type="text" name="obs" class="select"> <br>
+                <input type="text" name="obs" class="select">
 
             </div>
 			
 			   <div class="container">
                 <label for="">Data Resposta</label>
-                <input type="date" name="dtresposta" class="select"> <br>
+                <input type="date" name="dtresposta" class="select">
             </div>
 			
 			  <div class="container">
                 <label for="">Nome do Respondente</label>
-                <input type="text" name="name" class="select"> <br>
+                <input type="text" name="name" class="select">
             </div>
        
             <center>
