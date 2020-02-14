@@ -1,4 +1,30 @@
+<!-- FAZENDO A QUERY NO MYSQL PARA O SEGUNDO, TERCEIRO E QUARTO SELECT  -->
+<?php 
+include('conexao.php');
 
+if(isset($_POST["listaUP_id"]) && !empty($_POST["listaUP_id"])){
+    
+    $query = $conn->query("select * from tb_indicadores where cod_up = ".$_POST['listaUP_id']." group by programa");
+    while($row = $query->fetch_assoc() or die($conn->error)){  
+            echo '<option value="'.$row['cod_programa'].'">'.$row['programa'].'</option>';
+        }
+    }
+
+    if(isset($_POST["listaPrg_id"]) && !empty($_POST["listaPrg_id"])){
+        //Get all city data
+        $query = $conn->query("select * from tb_indicadores where cod_programa = ".$_POST['listaPrg_id']." group by acao");  
+        while($row = $query->fetch_assoc() or die($conn->error)){ 
+                echo '<option value="'.$row['cod_acao'].'">'.$row['acao'].'</option>';
+            }
+        }
+    if(isset($_POST["listaAction_id"]) && !empty($_POST["listaAction_id"])){
+        //Get all city data
+        $query = $conn->query("select * from tb_indicadores where cod_acao = ".$_POST['listaAction_id']." group by nm_indicador");  
+        while($row = $query->fetch_assoc() or die($conn->error)){ 
+                echo '<option value="'.$row['cod_indicador'].'">'.$row['ds_indicador'].'</option>';
+            }
+        }
+?>
 <!-- FAZENDO INSERT NO MYSQL -->
 <?php
 $orgao = $_POST["orgao"];
@@ -32,28 +58,6 @@ if($conn->query($sql) == TRUE) {
 $conn->close();
 ?>
 
-<!-- FAZENDO UMA QUERY NO MYSQL PARA O SEGUNDO SELECT  -->
-<?php 
-include('conexao.php');
-
-if(isset($_POST["listaUP_id"]) && !empty($_POST["listaUP_id"])){
-    
-    $query = $conn->query("select * from tb_indicadores where codigo_up = ".$_POST['listaUP_id']." group by programa");
-    while($row = $query->fetch_assoc() or die($conn->error)){  
-            echo '<option value="'.$row['codigo_programa'].'">'.$row['programa'].'</option>';
-        }
-    }
-
-    if(isset($_POST["listaPrg_id"]) && !empty($_POST["listaPrg_id"])){
-        //Get all city data
-        $query = $conn->query("select * from tb_indicadores where codigo_programa = ".$_POST['listaPrg_id']." group by acao");  
-        while($row = $query->fetch_assoc() or die($conn->error)){ 
-                echo '<option value="'.$row['codigo_acao'].'">'.$row['acao'].'</option>';
-            }
-        }
-
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
