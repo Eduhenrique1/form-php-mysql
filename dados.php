@@ -21,7 +21,7 @@ if(isset($_POST["listaUP_id"]) && !empty($_POST["listaUP_id"])){
         //Get all city data
         $query = $conn->query("select * from tb_indicadores where cod_acao = ".$_POST['listaAction_id']." group by nm_indicador");  
         while($row = $query->fetch_assoc() or die($conn->error)){ 
-                echo '<option value="'.$row['cod_indicador'].'">'.$row['ds_indicador'].'</option>';
+                echo '<option value="'.$row['cod_indicador'].'">'.$row['nm_indicador'].'</option>';
             }
         }
 ?>
