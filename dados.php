@@ -67,13 +67,12 @@ $conn->close();
     <link rel="stylesheet" href="style.css"/>
     <title>Inserido</title>
    <style>
-   
 .bt{
     background-color: white;
     width: 30%;
     height: 40px;
     border-radius: 25px;
-    font-size: 13pt;
+    font-size: 10pt;
     margin-left: 33%;
 }
 a{
@@ -82,11 +81,12 @@ a{
     text-transform: uppercase;
 }
 
-
    </style>
 </head>
 <body>
+    <div> 
    <h2 class="form">FORMULÁRIO CRIADO COM SUCESSO</h2> 
    <button class="bt"><a href="index.php">Voltar ao formulário</a></button>
+   </div>
 </body>
 </html>

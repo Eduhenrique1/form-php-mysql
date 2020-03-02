@@ -1,8 +1,10 @@
 body {
-    background-color: lightcyan;
+    background-color: #EFFBFB;
     font-family: Helvetica, Arial, sans-serif;
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: center;
 }
 
 h1 {
@@ -24,17 +26,19 @@ div {
 }
 
 .primary-div {
+    background-color: white;
     padding: 20px;
     margin: 20px;
-    height: 1000px;
+    height: 1920px;
+    width: 68%;
     margin-top: 10px;
     display: flex;
     justify-content: center;
+    border-radius: 10px;
 }    
 
 .container {
     border: 1px solid black;
-    background-color: white;
     margin: 10px;
     padding: 10px;
     border-radius: 10px;
@@ -45,15 +49,11 @@ div {
 
 input {
     width: 90%;
-    padding: 16px 20px;
-    border: none;
+    padding: 10px;
     border-radius: 4px;
-    background-color: #f1f1f1;
-    box-sizing: border-box;
-    outline: none;
-    font-size: 24px;
-    border-bottom: 2px solid rgba(0, 0, 0, .2);
+    font-size: 12pt;
     margin-top: 20px;
+    font-style: bold;
 }
 
 .button {
@@ -62,26 +62,23 @@ input {
     color: white;
     font-size: 15pt;
     margin: 20px;
+    border-radius: 30px;
 }
 
 label {
-    font-size: 16pt;
+    font-size: 14pt;
     text-transform: uppercase;
-    display: flex;
-    justify-content: start;
     margin: 20px;
-    margin-top: 40px;
+    margin-top: 30px;
+    margin-left: 4px;
 }
 
 .select1 {
-    width: 80%;
+    width: 90%;
     height: 50px;
     margin-top:20px ;  
 }
 
 .form{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22pt;
+    font-size: 26pt;
 }

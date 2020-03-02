@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css"/>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
@@ -18,7 +19,7 @@ $sql = $conn->query("select * from tb_indicadores group by up  ");
 ?>  
 
 <!-- SCRIPT DO AJAX/JQUERY -->
-< <script type="text/javascript">
+<script type="text/javascript">
 $(document).ready(function(){
     $('#listaUP').on('change',function(){
         var codID = $(this).val();
@@ -81,66 +82,61 @@ $(document).ready(function(){
             <h1>Questionário COMAV</h1>
 		
             <div class="container">
+                <label for="">Nome do Respondente</label>
+                     <input type="text" name="name" class="select">
+            </div>
+
+            <div class="container">
                 <label for="">Órgão</label>
-				<select id="listaUP" name="orgao" class="select1" >
-                <option value="">Selecione</option>
-                <?php
+                    <select id="listaUP" name="orgao" class="select1" >
+                        <option value="">Selecione</option>
+                        <?php
 
-                while($row = mysqli_fetch_assoc($sql)){
-                    echo '<option value="'.$row['cod_up'].'">'.$row['up'].'</option>';
-                }
+                        while($row = mysqli_fetch_assoc($sql)){
+                            echo '<option value="'.$row['cod_up'].'">'.$row['up'].'</option>';
+                        }
 
-                ?>
-				</select>
+                        ?>
+                    </select>
 				
             </div>
 
             <div class="container">
                 <label for="">Programa</label>
-                <select id="listaPrg" name="programa" class="select1" >
-                    <option value="">Selecione</option>
-                </select>
+                    <select id="listaPrg" name="programa" class="select1" >
+                        <option value="">Selecione</option>
+                    </select>
 
             </div>
 			
 			 <div class="container">
                 <label for="">Ação</label>         
-				<select id="listaAction" name="acao" class="select1">
-                    <option value="">Selecione</option>
-                </select>
-		
+                    <select id="listaAction" name="acao" class="select1">
+                        <option value="">Selecione</option>
+                    </select>
             </div>
 
-			<!-- REALIZAR UMA CONSULTA NA TABELA DE INDICADORES -->
-			
 			 <div class="container">
                 <label for="">Indicadores</label>         
-				 <select id="listaInd" name="indicador" class="select1" >
-                 <option value="">Selecione</option>
-                </select>
+                    <select id="listaInd" name="indicador" class="select1" >
+                        <option value="">Selecione</option>
+                    </select>
             </div>
-			
-		
+
             <div class="container">
                 <label for="">Realizado</label>
                 <input type="number" name="realizado" class="select">
             </div>
-        
 
             <div class="container">
-                <label for="">Observação</label>
-                <input type="text" name="obs" class="select">
-
-            </div>
-			
-			   <div class="container">
                 <label for="">Data Resposta</label>
                 <input type="date" name="dtresposta" class="select">
+
             </div>
-			
-			  <div class="container">
-                <label for="">Nome do Respondente</label>
-                <input type="text" name="name" class="select">
+
+			<div class="container">
+                <label for="">Observação</label>
+                <input type="text" name="obs" class="select">
             </div>
        
             <center>
