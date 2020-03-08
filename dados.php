@@ -11,22 +11,60 @@ if(isset($_POST["listaUP_id"]) && !empty($_POST["listaUP_id"])){
     }
 
     if(isset($_POST["listaPrg_id"]) && !empty($_POST["listaPrg_id"])){
-        //Get all city data
         $query = $conn->query("select * from tb_indicadores where cod_programa = ".$_POST['listaPrg_id']." group by acao");  
         while($row = $query->fetch_assoc() or die($conn->error)){ 
                 echo '<option value="'.$row['cod_acao'].'">'.$row['acao'].'</option>';
             }
         }
     if(isset($_POST["listaAction_id"]) && !empty($_POST["listaAction_id"])){
-        //Get all city data
         $query = $conn->query("select * from tb_indicadores where cod_acao = ".$_POST['listaAction_id']." group by nm_indicador");  
         while($row = $query->fetch_assoc() or die($conn->error)){ 
                 echo '<option value="'.$row['cod_indicador'].'">'.$row['nm_indicador'].'</option>';
             }
         }
+	
+	if(isset($_POST["listaInd_id"]) && !empty($_POST["listaInd_id"])){
+  
+        $query =("select *
+								from tb_indicadores
+								where cod_indicador = ".$_POST['listaInd_id']."
+								GROUP BY nm_indicador");
+		
+		echo "<table border=1 id='tableInd' class='my-table'>
+			<tr>
+				<thead>
+					<th>Nome do Indicador</th>
+					<th>Descrição do Indicador</th>
+					<th>Fórmula</th>
+					<th>Unidade de Medida</th>
+					<th>Periodicidade</th>
+					<th>Linha de Base</th>
+					<th>Meta do Ano 2020</th>
+				</thead>
+            </tr>";
+            
+            $result = $conn->query($query) or die($conn->error);
+		
+            while($row = $result->fetch_assoc()){ 
+               				
+				echo '<tr>';
+				
+				echo    "<td>".$row['nm_indicador']."</td>";
+				echo    "<td>".$row['dsc_indicador']."</td>";
+				echo    "<td>".$row['formula_calculo']."</td>";
+				echo    "<td>".$row['unidade_medida']."</td>";
+				echo    "<td>".$row['periodicidade']."</td>";
+				echo    "<td>".$row['linha_base']."</td>";
+				echo    "<td>".$row['meta_2020']."</td>";
+								
+				echo '</tr>';
+								
+            }
+			echo "</table>";
+        }	
 ?>
 <!-- FAZENDO INSERT NO MYSQL -->
-<?php
+<?php 
 $orgao = $_POST["orgao"];
 $programa = $_POST["programa"];
 $acao = $_POST["acao"];
